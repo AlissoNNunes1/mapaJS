@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ptbr">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+    <title>Festival de Artes de São Cristóvão</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.locatecontrol/dist/L.Control.Locate.min.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://cdn.maptiler.com/maptiler-sdk-js/v2.3.0/maptiler-sdk.umd.js"></script>
+    <link href="https://cdn.maptiler.com/maptiler-sdk-js/v2.3.0/maptiler-sdk.css" rel="stylesheet" />
+    <script src="https://cdn.maptiler.com/leaflet-maptilersdk/v2.0.0/leaflet-maptilersdk.js"></script>
+    <script src="https://unpkg.com/leaflet.locatecontrol/dist/L.Control.Locate.min.js"></script>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  </head>
+  <body>
+    <div id="map"></div>
+    <div id="eventos-dropdown">
+      <button id="toggleEventos">Mostrar Eventos</button>
+      <div id="eventos" style="display: none;">
+        <h3>Eventos</h3>
+        <select id="categoriaFiltro">
+          <option value="">Todas as Categorias</option>
+          <option value="Música">Música</option>
+          <option value="Teatro">Teatro</option>
+          <option value="Dança">Dança</option>
+          <!-- Adicione mais categorias conforme necessário -->
+        </select>
+        <input type="date" id="dataFiltro" />
+        <input type="time" id="horaFiltro" />
+        <div id="listaEventos"></div>
+      </div>
+    </div>
+    <div id="compartilhamento">
+      <button id="compartilharFacebook"><i class="fab fa-facebook-f"></i></button>
+      <button id="compartilharTwitter"><i class="fab fa-twitter"></i></button>
+      
+      <button id="compartilharWhatsapp"><i class="fab fa-whatsapp"></i></button>
+    </div>
+    <script type="module" src="./main.js"></script>
+  </body>
+</html>

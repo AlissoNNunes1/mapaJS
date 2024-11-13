@@ -1,0 +1,231 @@
+@font-face {
+    font-family: 'Boulder';
+    src: local('Boulder Regular'), url('./font/Boulder Mono Regular.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Boulder';
+    src: local('Boulder Mono Thin'), url('./font/Boulder Mono Thin.otf') format('opentype');
+    font-weight: 100;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Boulder';
+    src: local('Boulder Mono Thin Italic'), url('./font/Boulder Mono Thin Italic.otf') format('opentype');
+    font-weight: 100;
+    font-style: italic;
+}
+@font-face {
+    font-family: 'Boulder';
+    src: local('Boulder Bold'), url('./font/Boulder Mono Bold.otf') format('opentype');
+    font-weight: bold;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Boulder';
+    src: local('Boulder Bold Italic'), url('./font/Boulder Mono Bold Italic.otf') format('opentype');
+    font-weight: bold;
+    font-style: italic;
+}
+@font-face {
+    font-family: 'Boulder';
+    src: local('Boulder Mono Light'), url('./font/Boulder Mono Light.otf') format('opentype');
+    font-weight: 900;
+    font-style: normal;
+}
+body {
+    margin: 0;
+    font-family: 'Boulder', sans-serif;
+}
+
+#map {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+.leaflet-popup-content h4 {
+    margin: 0;
+}
+.leaflet-popup-content p {
+    margin: 0;
+}
+#eventos-dropdown {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    z-index: 1000; /* Ensure the events dropdown is above the map */
+}
+#toggleEventos {
+    background-color: #FF8313; /* Laranja */
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+#toggleEventos:hover {
+    background-color: #e67300; /* Darker laranja */
+}
+#eventos {
+    width: 300px;
+    max-height: 90%;
+    overflow-y: auto;
+    background: #FDF028; /* Amarelo */
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+}
+#eventos h3 {
+    margin-top: 0;
+    color: #FF8313; /* Laranja */
+}
+.evento {
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #B7FA21; /* Verde */
+}
+.evento.happening-now {
+    border-color: #FF8313; /* Laranja */
+    background-color: #05FBFA; /* Azul */
+}
+.evento h4 {
+    margin: 0 0 5px 0;
+}
+.evento p {
+    margin: 0;
+}
+
+/* Custom Leaflet button styles */
+.leaflet-bar a,
+.leaflet-bar a:hover {
+    background-color: #FF8313; /* Laranja */
+    color: white;
+    font-family: 'Boulder', sans-serif;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+}
+.leaflet-bar a:hover {
+    background-color: #e67300; /* Darker laranja */
+}
+
+/* Custom Leaflet layer control styles */
+.leaflet-control-layers {
+    font-family: 'Boulder', sans-serif;
+    background-color: #FDF028; /* Amarelo */
+    color: #FF8313; /* Laranja */
+    border-radius: 5px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    z-index: 2000; /* Ensure the layer control is above the map */
+}
+.leaflet-control-layers-toggle {
+    background-color: #FF8313; /* Laranja */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.leaflet-control-layers-list {
+    background-color: #FDF028; /* Amarelo */
+    color: #FF8313; /* Laranja */
+}
+.leaflet-control-layers label {
+    font-family: 'Boulder', sans-serif;
+    color: #FF8313; /* Laranja */
+}
+
+/* Custom Leaflet locate control styles */
+.leaflet-control-locate {
+    font-family: 'Boulder', sans-serif;
+    background-color: #FF8313; /* Laranja */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    z-index: 2000; /* Ensure the locate control is above the map */
+}
+.leaflet-control-locate a {
+    background-color: #FF8313; /* Laranja */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.leaflet-control-locate a:hover {
+    background-color: #e67300; /* Darker laranja */
+}
+.leaflet-control-locate .leaflet-bar-part {
+    background-color: #FF8313; /* Laranja */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.leaflet-control-locate .leaflet-bar-part:hover {
+    background-color: #e67300; /* Darker laranja */
+}
+
+.leaflet-bar a.leaflet-disabled {
+    cursor: default;
+    background-color: #FF8313;
+    color: #bbb;
+}
+
+/* Estilos para a div de compartilhamento */
+#compartilhamento {
+    position: absolute;
+    bottom: 16px;
+    right: 10px;
+    z-index: 1000; /* Ensure the sharing buttons are above the map */
+    display: flex;
+    gap: 10px;
+}
+
+#compartilhamento button {
+    background-color: #B7FA21; /* Laranja */
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#compartilhamento button:hover {
+    background-color: #e67300; /* Darker laranja */
+}
+
+#compartilhamento i {
+    margin-right: 5px;
+}
+
+/* Estilos para o select e os inputs */
+select, input[type="date"], input[type="time"] {
+    width: 90%;
+    padding: 8px;
+    margin-top: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-family: 'Boulder', sans-serif;
+    font-size: 14px;
+    background-color: #fff;
+    color: #333;
+}
+
+select:focus, input[type="date"]:focus, input[type="time"]:focus {
+    border-color: #FF8313; /* Laranja */
+    outline: none;
+}
