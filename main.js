@@ -33,6 +33,7 @@ const fascGroup = L.layerGroup().addTo(map);
 const estacionamentosGroup = L.layerGroup();
 const outrosGroup = L.layerGroup();
 
+// Eventos
 
 
 // Function to add markers to the map
@@ -71,15 +72,18 @@ function addMarkers(locations, coordinates, iconUrl, iconSize, iconAnchor, popup
                         <p>Categoria: ${evento.categoria}</p>
                         <button class="compartilharFacebook" data-evento='${JSON.stringify(evento)}'><i class="fab fa-facebook-f"></i></button>
                         <button class="compartilharTwitter" data-evento='${JSON.stringify(evento)}'><i class="fab fa-twitter"></i></button>
-                        <button class="compartilharInstagram" data-evento='${JSON.stringify(evento)}'><i class="fab fa-instagram"></i></button>
                         <button class="compartilharWhatsapp" data-evento='${JSON.stringify(evento)}'><i class="fab fa-whatsapp"></i></button>
                     </div>
                 `;
             });
         }
 
-        L.marker([lat, lng], { icon: icon }).addTo(layerGroup)
+        const marker = L.marker([lat, lng], { icon: icon }).addTo(layerGroup)
             .bindPopup(popupContent);
+
+        marker.on('popupopen', () => {
+            configurarEventosDeCompartilhamento();
+        });
     });
 }
 
@@ -145,11 +149,6 @@ function compartilharTwitter(evento) {
     window.open(url, '_blank');
 }
 
-// Função para compartilhar no Instagram (Nota: Instagram não suporta compartilhamento direto via URL)
-function compartilharInstagram(evento) {
-    alert('Instagram não suporta compartilhamento direto via URL. Por favor, copie e cole o link manualmente.');
-}
-
 // Função para compartilhar no WhatsApp
 function compartilharWhatsapp(evento) {
     const url = `https://api.whatsapp.com/send?text=${encodeURIComponent(`Venha participar do evento "${evento.nome}" com ${evento.artista} no ${evento.local}! Não perca!`)} - ${encodeURIComponent(window.location.href)}`;
@@ -165,10 +164,6 @@ function compartilharFacebookMapa() {
 function compartilharTwitterMapa() {
     const url = `https://twitter.com/intent/tweet?text=${encodeURIComponent('Acompanhe o Festival de Artes de São Cristóvão pelo nosso mapa interativo! Não perca nenhum evento!')}&url=${encodeURIComponent(window.location.href)}`;
     window.open(url, '_blank');
-}
-
-function compartilharInstagramMapa() {
-    alert('Instagram não suporta compartilhamento direto via URL. Por favor, copie e cole o link manualmente.');
 }
 
 function compartilharWhatsappMapa() {
@@ -216,7 +211,6 @@ function mostrarEventos(categoria) {
             <p>Categoria: ${evento.categoria}</p>
             <button class="compartilharFacebook" data-evento='${JSON.stringify(evento)}'><i class="fab fa-facebook-f"></i></button>
             <button class="compartilharTwitter" data-evento='${JSON.stringify(evento)}'><i class="fab fa-twitter"></i></button>
-            <button class="compartilharInstagram" data-evento='${JSON.stringify(evento)}'><i class="fab fa-instagram"></i></button>
             <button class="compartilharWhatsapp" data-evento='${JSON.stringify(evento)}'><i class="fab fa-whatsapp"></i></button>
         `;
     });
@@ -241,13 +235,6 @@ function configurarEventosDeCompartilhamento() {
         });
     });
 
-    document.querySelectorAll('.compartilharInstagram').forEach(button => {
-        button.addEventListener('click', (e) => {
-            const evento = JSON.parse(e.target.closest('button').getAttribute('data-evento'));
-            compartilharInstagram(evento);
-        });
-    });
-
     document.querySelectorAll('.compartilharWhatsapp').forEach(button => {
         button.addEventListener('click', (e) => {
             const evento = JSON.parse(e.target.closest('button').getAttribute('data-evento'));
@@ -264,7 +251,6 @@ document.getElementById('compartilharFacebook').addEventListener('click', () => 
 document.getElementById('compartilharTwitter').addEventListener('click', () => {
     compartilharTwitterMapa();
 });
-
 
 document.getElementById('compartilharWhatsapp').addEventListener('click', () => {
     compartilharWhatsappMapa();

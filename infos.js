@@ -54,7 +54,7 @@ export const coordenadas_outros = [
     // Adicione as coordenadas correspondentes aqui
 ];
 
-const eventos = [
+export const eventos = [
     {
         nome: "Show de Samba",
         artista: "Grupo Samba na Bica",
