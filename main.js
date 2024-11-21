@@ -284,6 +284,26 @@ function agendarNotificacoes() {
             }, tempoRestante);
         }
     });
+    // Função para obter categorias únicas dos eventos
+function getCategorias() {
+    const categorias = eventos.map(evento => evento.categoria);
+    return [...new Set(categorias)];
+}
+
+// Função para preencher o filtro de categorias
+function preencherFiltroCategorias() {
+    const categoriaFiltro = document.getElementById('categoriaFiltro');
+    const categorias = getCategorias();
+    categorias.forEach(categoria => {
+        const option = document.createElement('option');
+        option.value = categoria;
+        option.textContent = categoria;
+        categoriaFiltro.appendChild(option);
+    });
+}
+
+// Chame a função para preencher o filtro de categorias ao carregar a página
+document.addEventListener('DOMContentLoaded', preencherFiltroCategorias);
 }
 
 agendarNotificacoes();

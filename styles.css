@@ -46,6 +46,15 @@ body {
     bottom: 0;
     left: 0;
 }
+.leaflet-popup-content {
+    max-height: 200px; /* Ajuste conforme necessário */
+    overflow-y: auto;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+}
+.leaflet-popup-content::-webkit-scrollbar {
+    display: none; /* Safari and Chrome */
+}
 .leaflet-popup-content h4 {
     margin: 0;
 }
@@ -56,7 +65,25 @@ body {
     position: absolute;
     bottom: 10px;
     left: 10px;
-    z-index: 1000; /* Ensure the events dropdown is above the map */
+    z-index: 1000; 
+    max-height: 90%;
+    overflow-y: auto;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+
+}
+#listaEventos{
+   
+    width: auto;
+    max-height: 90%;
+    overflow-y: auto;
+    background: #FDF028; /* Amarelo */
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+    
 }
 #toggleEventos {
     background-color: #FF8313; /* Laranja */
@@ -72,33 +99,65 @@ body {
 }
 #eventos {
     width: 300px;
-    max-height: 90%;
+    max-height: 80%;
     overflow-y: auto;
     background: #FDF028; /* Amarelo */
     padding: 10px;
     border-radius: 8px;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+}
+#eventos::-webkit-scrollbar {
+    display: none; /* Safari and Chrome */
 }
 #eventos h3 {
     margin-top: 0;
     color: #FF8313; /* Laranja */
 }
 .evento {
-    margin-bottom: 10px;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: #B7FA21; /* Verde */
+    margin-bottom: 15px;
+    padding: 15px;
+    overflow-y: auto;
+    border: 2px solid #FF8313; /* Laranja */
+    border-radius: 10px;
+    background-color: #FDF028; /* Amarelo */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+}
+.evento::-webkit-scrollbar {
+    display: none; /* Safari and Chrome */
 }
 .evento.happening-now {
     border-color: #FF8313; /* Laranja */
     background-color: #05FBFA; /* Azul */
 }
 .evento h4 {
-    margin: 0 0 5px 0;
+    margin: 0 0 10px 0;
+    font-size: 18px;
+    color: #FF8313; /* Laranja */
 }
 .evento p {
-    margin: 0;
+    margin: 5px 0;
+    font-size: 14px;
+    color: #333;
+}
+.evento button {
+    background-color: #FF8313; /* Laranja */
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    margin-right: 5px;
+}
+.evento button:hover {
+    background-color: #e67300; /* Darker laranja */
+}
+.evento i {
+    margin-right: 5px;
 }
 
 /* Custom Leaflet button styles */
@@ -189,6 +248,7 @@ body {
     z-index: 1000; /* Ensure the sharing buttons are above the map */
     display: flex;
     gap: 10px;
+    overflow-y: auto;
 }
 
 #compartilhamento button {
