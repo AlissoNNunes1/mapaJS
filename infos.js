@@ -8,13 +8,13 @@ export const locais_progamação = [
     "Salão de Artes Vesta Viana - Praça da Matriz",
     "Palco Mariano Antônio - Largo da Matriz",
     "Cortejos Mestre Neca - Praça da Matriz",
-    "Cortejos Mestre Neca - Praça da Bandeira",
+    "Cortejos Mestre Neca - Praça João Ferreira dos Reis",
     "Espaço Cidade Viva - EMEF Gina Franco",
     "Casa das Culturas Populares",
     "Museu de Arte Sacra de Sergipe",
     "Arquivo Público Municipal",
     "Salão de Literatura Manoel Ferreira - EMEF Gina Franco",
-
+    "Casa do IPHAN  - Praça São Francisco",
 ];
 
 export const coordenadas_programação = [
@@ -26,17 +26,76 @@ export const coordenadas_programação = [
     "-11.014121990989773, -37.206772367368316",
     "-11.014232521136702, -37.20784362851944",
     "-11.013699965536262, -37.20709235351297",
-    "-11.012521234670913, -37.20060604976825",
+    "-11.013711339364123, -37.2029654527133",
     "-11.014851445321673, -37.20581064800654",
     "-11.014002747406382, -37.20569362789991",
     "-11.013154147432887, -37.20565968368278",
-    // arquivo publico
-    "-11.014851445321673, -37.20581064800654"
+    "-11.0114922642831, -37.20294139087706",
+    "-11.014851445321673, -37.20581064800654",
+    "-11.014182404295926, -37.20519536641173",
+];
+
+export const ruas_bloqueadas = [
+    "Rua Coronel Erundino Prado (da Praça João Ferreira dos Reis até a Igreja do Rosário)",
+    "Ruas laterais da Igreja do Rosário",
+    "Rua Boa Viagem",
+    "Rua Eng. Botto de Barros",
+    "Rua Mamede F. Dantas",
+    "Praça da Bíblia",
+    "Rua Frei Santa Cecília",
+    "Rua Pereira Lobo",
+    "Rua Tobias Barreto",
+    "Rua Messias Prado",
+    "Rua Erundino Prado Filho"
+];
+
+export const coordenadas_ruas_bloqueadas = [
+    "-11.013850118115112, -37.20383548611992",
+    "-11.013544561394754, -37.20304662645011",
+    "-11.013916524317418, -37.20370724721838",
+    "-11.0140000304271, -37.20393733129744",
+    "-11.012865008497965, -37.20592867703529",
+    "-11.013361066440767, -37.20755986854856",
+    "-11.01465426796057, -37.205697017218895",
+    "-11.01539220839937, -37.207222286827815",
+    "-11.014219539134709, -37.208164769766185",
+    "-11.013422344843788, -37.20658411294412",
+    "-11.012291213742525, -37.205959977705135",
+    "-11.01205448706687, -37.20724069366219"  ,  
+    "-11.014660510993393, -37.207435115890824",
+    "-11.014698686564651, -37.2074223753974",
+    "-11.014603269031069, -37.205701630927955",
+    "-11.014649155196834, -37.205284731984314",
+    "-11.015490507777887, -37.20510906734996",
+    
+
+];
+
+export const ruas_transito_livre_br101 = [
+    "Rua Marechal Deodoro da Fonseca",
+    "Av. Santo Antônio",
+    "Rua Adriano Leonardo da Vitória (Antiga R. Pedro Santos)",
+    "Rua João Bebe Água",
+    "Rua Amintas Jorge",
+    "Praça João Ferreira",
+    "Ladeira Dom Vicente Távora"
+];
+
+export const ruas_transito_livre_rodovia = [
+    "Av. Paulo Barreto de Menezes",
+    "Ladeira Dom Vicente Távora",
+    "Praça João Ferreira",
+    "Rua Amintas Jorge"
 ];
 
 export const estacionamentos = [
-    "RUA MESSIAS PRADO",
-    "PRAÇA LAURO DE FREITAS",
+    "Av. Paulo Barreto de Menezes",
+    "Ladeira Dom Vicente Távora",
+    "Rua Gaudência",
+    "Largo da Estação",
+    "Rua Graccho Cardoso",
+    "Rua Engenheiro Boto de Barros",
+    "Ladeira São Gonçalo"
 ];
 
 export const coordenadas_estacionamentos = [
@@ -46,7 +105,9 @@ export const coordenadas_estacionamentos = [
 
 export const outros_locais = [
     "Feira São criativos",
-    "IPHAN",
+    "Casa Cosmos",
+    "Espaço Fijô",
+    "Espaço Humanos",
     "Biblioteca",
     "Bricelets",
     "Casa da queijada",
@@ -214,7 +275,7 @@ export const eventos = [
     },
     {
         nome: "Exposições Permanentes",
-        artista: "Laize dos Reis Souza, Davi Silva Santos, Kely Nascimento, Kiris, Luan Dias da Silva, Pedro Felipe dos Santos, Nivaldo Oliveira, Alef Freire Santos, Eric de Souza Estevão, Sara Ellen Barreto Cardoso, Yasmin de Freitas Nogueira, Petherson Guilherme da Silva Fontes, Aline Viana Tomé, Cainan Antônio Souza Mendonça, Elaine Regina Bomfim Gomes",
+        artista: "Laize Rosendo, Calunga, Kely Nascimento, Kiris, Luan Dias, Pedido, Mestre Nivaldo Oliveira, Alef Freire, Eric Estevão, Sara Cardoso, Yasmin Nogueira, Petherson Fontes, Aline Viana, Nagô, Elaine Bomfim",
         local: "Salão de Artes Vesta Viana - Praça da Matriz",
         data: "29/11/2024",
         hora_inicio: "10:00",
@@ -233,7 +294,7 @@ export const eventos = [
     {
         nome: "Banda do CAPS",
         artista: "",
-        local: "Cortejos Mestre Neca - Praça da Bandeira",
+        local: "Cortejos Mestre Neca - Praça João Ferreira dos Reis",
         data: "29/11/2024",
         hora_inicio: "16:00",
         hora_fim: "16:30",
@@ -242,7 +303,7 @@ export const eventos = [
     {
         nome: "Chegança da AMI",
         artista: "",
-        local: "Cortejos Mestre Neca - Praça da Bandeira",
+        local: "Cortejos Mestre Neca - Praça João Ferreira dos Reis",
         data: "29/11/2024",
         hora_inicio: "16:45",
         hora_fim: "17:15",
@@ -352,6 +413,27 @@ export const eventos = [
         hora_fim: "17:00",
         categoria: "Exposição"
     },
+    {
+        nome: "Exposição 'PRETAGONISTAS convidam'",
+        artista:"",
+        local: "Casa do IPHAN  - Praça São Francisco",
+        data: "29/11/2024",
+        hora_inicio: "09:00",
+        hora_fim: "17:00",
+        categoria: "Exposição"
+    },
+    {
+        nome:"Abertura com a performance “Marcadas”",
+        artista:"",
+        local:"Casa do IPHAN  - Praça São Francisco",
+        data:"29/11/2024",
+        hora_inicio:"18:00",
+        hora_fim:"18:59",
+        categoria:"Evento"
+
+
+    },
+
     // Dia 30/11/2024
     {
         nome: "Serigy All-Stars",
@@ -491,7 +573,7 @@ export const eventos = [
     {
         nome: "Maria Tambô",
         artista: "",
-        local: "Cortejos Mestre Neca - Praça da Bandeira",
+        local: "Cortejos Mestre Neca - Praça João Ferreira dos Reis",
         data: "30/11/2024",
         hora_inicio: "16:00",
         hora_fim: "16:30",
@@ -500,7 +582,7 @@ export const eventos = [
     {
         nome: "Batalá",
         artista: "",
-        local: "Cortejos Mestre Neca - Praça da Bandeira",
+        local: "Cortejos Mestre Neca - Praça João Ferreira dos Reis",
         data: "30/11/2024",
         hora_inicio: "16:45",
         hora_fim: "17:15",
@@ -704,7 +786,7 @@ export const eventos = [
     {
         nome: "Zabumbadores de Vó Lourdes",
         artista: "",
-        local: "Cortejos Mestre Neca - Praça da Bandeira",
+        local: "Cortejos Mestre Neca - Praça João Ferreira dos Reis",
         data: "01/12/2024",
         hora_inicio: "16:00",
         hora_fim: "16:30",
@@ -713,7 +795,7 @@ export const eventos = [
     {
         nome: "Caceteira de Mestre Rindú",
         artista: "",
-        local: "Cortejos Mestre Neca - Praça da Bandeira",
+        local: "Cortejos Mestre Neca - Praça João Ferreira dos Reis",
         data: "01/12/2024",
         hora_inicio: "16:45",
         hora_fim: "17:15",

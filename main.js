@@ -2,6 +2,7 @@ import {
     locais_progamação,
     coordenadas_programação,
     estacionamentos,
+    coordenadas_ruas_bloqueadas,
     coordenadas_estacionamentos,
     outros_locais,
     coordenadas_outros,
@@ -32,6 +33,7 @@ const mtLayer = L.maptilerLayer({
 const fascGroup = L.layerGroup().addTo(map);
 const estacionamentosGroup = L.layerGroup();
 const outrosGroup = L.layerGroup();
+const ruasBloqueadasGroup = L.layerGroup();
 
 // Eventos
 
@@ -90,6 +92,9 @@ function addMarkers(locations, coordinates, iconUrl, iconSize, iconAnchor, popup
 // Add markers for programação
 addMarkers(locais_progamação, coordenadas_programação, 'icons/Perfil.png', [70, 70], [25, 50], [0, -50], fascGroup);
 
+// Add markers for ruas bloqueadas
+addMarkers(['Ruas Bloqueadas'], coordenadas_ruas_bloqueadas, 'icons/bloqueio-de-estrada.png', [25, 41], [12, 41], [1, -34], ruasBloqueadasGroup);
+
 // Add markers for estacionamentos
 addMarkers(estacionamentos, coordenadas_estacionamentos, 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png', [25, 41], [12, 41], [1, -34], estacionamentosGroup);
 
@@ -117,7 +122,8 @@ L.control.locate({
 const overlayMaps = {
     'FASC': fascGroup,
     'Estacionamentos': estacionamentosGroup,
-    'Outros Locais': outrosGroup
+    'Outros Locais': outrosGroup,
+    'Ruas Bloqueadas': ruasBloqueadasGroup,
 };
 
 L.control.layers(null, overlayMaps).addTo(map);
