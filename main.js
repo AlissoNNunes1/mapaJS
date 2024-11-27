@@ -5,14 +5,15 @@ import {
     coordenadas_ruas_bloqueadas,
     coordenadas_estacionamentos,
     outros_locais,
+    postos_atendimento,
     coordenadas_outros,
-    eventos
+    eventos,
 } from './infos.js';
 
 const key = 'Vn2jwrU9FTKM0l0aWaqA';
 const map = L.map('map', {
     center: [-11.01378936107402, -37.205408351941834],
-    zoom: 20,
+    zoom: 16,
     maxZoom: 25,
     minZoom: 16,
     maxBounds: [
@@ -34,14 +35,15 @@ const fascGroup = L.layerGroup().addTo(map);
 const estacionamentosGroup = L.layerGroup();
 const outrosGroup = L.layerGroup();
 const ruasBloqueadasGroup = L.layerGroup();
-
-// Eventos
-
+const postoAtendimentoGroup = L.layerGroup();
 
 // Function to add markers to the map
-function addMarkers(locations, coordinates, iconUrl, iconSize, iconAnchor, popupAnchor, layerGroup) {
+function addMarkers(locations, coordinates, iconMapping, iconSize, iconAnchor, popupAnchor, layerGroup) {
     coordinates.forEach((coord, index) => {
         const [lat, lng] = coord.split(',').map(Number);
+
+        // Define o ícone com base no nome do local
+        const iconUrl = iconMapping[locations[index]] || iconMapping['default'];
         const icon = L.icon({
             iconUrl: iconUrl,
             iconSize: iconSize,
@@ -59,7 +61,7 @@ function addMarkers(locations, coordinates, iconUrl, iconSize, iconAnchor, popup
         let popupContent = `
             <h4>${locations[index]}</h4>
             <p>Local: ${locations[index]}</p>
-            <a href="https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}" target="_blank">Ir</a>
+            <a class="ir" href="https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}" target="_blank">Ir</a>
         `;
 
         if (eventosNoLocal.length > 0) {
@@ -89,19 +91,82 @@ function addMarkers(locations, coordinates, iconUrl, iconSize, iconAnchor, popup
     });
 }
 
-// Add markers for programação
-addMarkers(locais_progamação, coordenadas_programação, 'icons/Perfil.png', [70, 70], [25, 50], [0, -50], fascGroup);
+// Mapeamento de ícones
+const iconMapping = {
+    "Palco Samba na Bica - Bica dos Pintos": "icons/5.png",
+    "Palco Frei Santa Cecilia - Praça do Carmo": "icons/5.png",
+    "Palco João Bebe Água - Praça São Francisco": "icons/5.png",
+    "Música na Igreja - Igreja do Rosário dos Homens Pretos": "icons/5.png",
+    "Cine Trianon - Cine Theatro Lar Imaculada Conceição": "icons/2.png",
+    "Salão de Artes Vesta Viana - Praça da Matriz": "icons/3.png",
+    "Palco Mariano Antônio - Largo da Matriz": "icons/2.png",
+    "Cortejos Mestre Neca - Praça da Matriz": "icons/4.png",
+    "Cortejos Mestre Neca - Praça João Ferreira dos Reis": "icons/4.png",
+    "Espaço Cidade Viva - EMEF Gina Franco": "icons/1.png",
+    "Casa das Culturas Populares": "icons/4.png",
+    "Museu de Arte Sacra de Sergipe": "icons/6.png",
+    "Arquivo Público Municipal": "icons/6.png",
+    "Salão de Literatura Manoel Ferreira - EMEF Gina Franco": "icons/1.png",
+    "Casa do IPHAN  - Praça São Francisco": "icons/6.png",
+    "default": "icons/Perfil.png" // Ícone padrão para locais não mapeados
+};
+
+// Adiciona marcadores com ícones personalizados
+addMarkers(
+    locais_progamação,
+    coordenadas_programação,
+    iconMapping,
+    [70, 70],  // Tamanho do ícone
+    [25, 50],  // Âncora do ícone
+    [0, -50],  // Âncora do popup
+    fascGroup
+);
 
 // Add markers for ruas bloqueadas
-addMarkers(['Ruas Bloqueadas'], coordenadas_ruas_bloqueadas, 'icons/bloqueio-de-estrada.png', [25, 41], [12, 41], [1, -34], ruasBloqueadasGroup);
+addMarkers(
+    ["Ruas Bloqueadas"],
+    coordenadas_ruas_bloqueadas,
+    { "Ruas Bloqueadas": "icons/bloqueio-de-estrada.png", "default": "icons/bloqueio-de-estrada.png" },
+    [25, 41],
+    [12, 41],
+    [1, -34],
+    ruasBloqueadasGroup
+);
 
 // Add markers for estacionamentos
-addMarkers(estacionamentos, coordenadas_estacionamentos, 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png', [25, 41], [12, 41], [1, -34], estacionamentosGroup);
+addMarkers(
+    estacionamentos,
+    coordenadas_estacionamentos,
+    { "default": "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png" },
+    [25, 41],
+    [12, 41],
+    [1, -34],
+    estacionamentosGroup
+);
 
 // Add markers for outros locais (if coordinates are available)
 if (coordenadas_outros.length > 0) {
-    addMarkers(outros_locais, coordenadas_outros, 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png', [25, 41], [12, 41], [1, -34], outrosGroup);
+    addMarkers(
+        outros_locais,
+        coordenadas_outros,
+        { "default": "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png" },
+        [25, 41],
+        [12, 41],
+        [1, -34],
+        outrosGroup
+    );
 }
+
+// Add markers for postos de atendimento
+addMarkers(
+    ["Posto de Atendimento"],
+    postos_atendimento,
+    { "Posto de Atendimento": "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png", "default": "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png" },
+    [25, 41],
+    [12, 41],
+    [1, -34],
+    postoAtendimentoGroup
+);
 
 // Add locate control
 L.control.locate({
@@ -124,6 +189,7 @@ const overlayMaps = {
     'Estacionamentos': estacionamentosGroup,
     'Outros Locais': outrosGroup,
     'Ruas Bloqueadas': ruasBloqueadasGroup,
+    'Postos de Atendimento': postoAtendimentoGroup
 };
 
 L.control.layers(null, overlayMaps).addTo(map);
@@ -290,26 +356,6 @@ function agendarNotificacoes() {
             }, tempoRestante);
         }
     });
-    // Função para obter categorias únicas dos eventos
-function getCategorias() {
-    const categorias = eventos.map(evento => evento.categoria);
-    return [...new Set(categorias)];
-}
-
-// Função para preencher o filtro de categorias
-function preencherFiltroCategorias() {
-    const categoriaFiltro = document.getElementById('categoriaFiltro');
-    const categorias = getCategorias();
-    categorias.forEach(categoria => {
-        const option = document.createElement('option');
-        option.value = categoria;
-        option.textContent = categoria;
-        categoriaFiltro.appendChild(option);
-    });
-}
-
-// Chame a função para preencher o filtro de categorias ao carregar a página
-document.addEventListener('DOMContentLoaded', preencherFiltroCategorias);
 }
 
 agendarNotificacoes();

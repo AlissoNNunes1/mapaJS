@@ -113,6 +113,23 @@ body {
     margin-top: 0;
     color: #FF8313; /* Laranja */
 }
+.ir {
+    display: inline-block;
+    background-color: #FF8313; /* Laranja */
+    color: white;
+    padding: 8px 12px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 14px;
+    font-family: 'Boulder', sans-serif;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.ir:hover {
+    background-color: #e67300; /* Laranja mais escuro */
+}
 .evento {
     margin-bottom: 15px;
     padding: 15px;
