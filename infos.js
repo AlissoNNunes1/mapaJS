@@ -156,7 +156,7 @@ export const postos_atendimento = [
 export const eventos = [
     {
         nome: "Liberty Soul",
-        artista: "",
+        artista: "Liberty Soul",
         local: "Palco João Bebe Água - Praça São Francisco",
         data: "29/11/2024",
         hora_inicio: "19:30",
@@ -165,7 +165,7 @@ export const eventos = [
     },
     {
         nome: "Timbalada & Afrocidade",
-        artista: "",
+        artista: "Timbalad & Afrocidade",
         local: "Palco João Bebe Água - Praça São Francisco",
         data: "29/11/2024",
         hora_inicio: "22:00",
@@ -174,8 +174,8 @@ export const eventos = [
     },
     {
         nome: "Revelação",
-        artista: "",
-        local: "Palco João Bebe Água",
+        artista: "Grupo Revelação",
+        local: "Palco João Bebe Água - Praça São Francisco",
         data: "30/11/2024",
         hora_inicio: "00:00",
         hora_fim: "01:59",
@@ -183,8 +183,8 @@ export const eventos = [
     },
     {
         nome: "Tasha & Tracie",
-        artista: "",
-        local: "Palco João Bebe Água",
+        artista: "Tasha & Tracie",
+        local: "Palco João Bebe Água - Praça São Francisco",
         data: "30/11/2024",
         hora_inicio: "02:00",
         hora_fim: "03:59",
@@ -192,7 +192,7 @@ export const eventos = [
     },
     {
         nome: "Oduma",
-        artista: "",
+        artista: "Oduma",
         local: "Palco Frei Santa Cecília - Praça do Carmo",
         data: "29/11/2024",
         hora_inicio: "19:00",
@@ -201,7 +201,7 @@ export const eventos = [
     },
     {
         nome: "Samba do Arnesto",
-        artista: "",
+        artista: "Samba do Arnesto",
         local: "Palco Frei Santa Cecília - Praça do Carmo",
         data: "29/11/2024",
         hora_inicio: "21:00",
@@ -210,7 +210,7 @@ export const eventos = [
     },
     {
         nome: "Mãeana",
-        artista: "",
+        artista: "Mãena",
         local: "Palco Frei Santa Cecília - Praça do Carmo",
         data: "29/11/2024",
         hora_inicio: "23:00",
@@ -219,7 +219,7 @@ export const eventos = [
     },
     {
         nome: "Heitor Mendonça canta Belchior",
-        artista: "",
+        artista: "Heitor Mendonça",
         local: "Palco Frei Santa Cecília - Praça do Carmo",
         data: "30/11/2024",
         hora_inicio: "01:00",
@@ -228,7 +228,7 @@ export const eventos = [
     },
     {
         nome: "Samba Nuaá",
-        artista: "",
+        artista: "Samba Nuaá",
         local: "Palco Samba na Bica - Bica dos Pintos",
         data: "29/11/2024",
         hora_inicio: "13:00",
@@ -237,7 +237,7 @@ export const eventos = [
     },
     {
         nome: "Trakinagem",
-        artista: "",
+        artista: "Trakinagem",
         local: "Palco Samba na Bica - Bica dos Pintos",
         data: "29/11/2024",
         hora_inicio: "15:00",
@@ -246,7 +246,7 @@ export const eventos = [
     },
     {
         nome: "Diego Lima - Projeto 'ViolãoCello'",
-        artista: "",
+        artista: "Diego Lima",
         local: "Música na Igreja - Igreja do Rosário",
         data: "29/11/2024",
         hora_inicio: "15:00",
@@ -254,7 +254,7 @@ export const eventos = [
     },
     {
         nome: "Denisson Oráculo",
-        artista: "",
+        artista: "Denisson Oráculo",
         local: "Música na Igreja - Igreja do Rosário",
         data: "29/11/2024",
         hora_inicio: "17:00",
@@ -460,7 +460,7 @@ export const eventos = [
     // Dia 30/11/2024
     {
         nome: "Serigy All-Stars",
-        artista: "",
+        artista: "Serigy All-Stars",
         local: "Palco João Bebe Água - Praça São Francisco",
         data: "30/11/2024",
         hora_inicio: "20:00",
@@ -469,7 +469,7 @@ export const eventos = [
     },
     {
         nome: "Marina Lima",
-        artista: "",
+        artista: "Marina Lima",
         local: "Palco João Bebe Água - Praça São Francisco",
         data: "30/11/2024",
         hora_inicio: "22:00",
@@ -478,7 +478,7 @@ export const eventos = [
     },
     {
         nome: "Baiana System",
-        artista: "",
+        artista: "Baianna System",
         local: "Palco João Bebe Água - Praça São Francisco",
         data: "01/12/2024",
         hora_inicio: "00:00",

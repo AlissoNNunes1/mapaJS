@@ -71,7 +71,7 @@ body {
 }
 #listaEventos {
     width: auto;
-    max-height: 70vh;
+    max-height: 50vh;
     overflow-y: auto; /* Habilitar overflow-y */
     background: #FDF028; /* Amarelo */
     padding: 10px;
@@ -262,8 +262,16 @@ body {
     right: 10px;
     z-index: 1000; /* Ensure the sharing buttons are above the map */
     display: flex;
+    flex-direction: flex; /* Colocar os elementos em coluna */
+    align-items: center; /* Centralizar os elementos */
     gap: 10px;
     overflow-y: auto;
+}
+
+#compartilhamento p {
+    margin: 0;
+    font-size: 16px;
+    color: #fff; /* Laranja */
 }
 
 #compartilhamento button {

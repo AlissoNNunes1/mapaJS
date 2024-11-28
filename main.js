@@ -127,7 +127,7 @@ addMarkers(
     ["Ruas Bloqueadas"],
     coordenadas_ruas_bloqueadas,
     { "Ruas Bloqueadas": "icons/bloqueio-de-estrada.png", "default": "icons/bloqueio-de-estrada.png" },
-    [25, 41],
+    [26, 41],
     [12, 41],
     [1, -34],
     ruasBloqueadasGroup
@@ -137,7 +137,7 @@ addMarkers(
 addMarkers(
     estacionamentos,
     coordenadas_estacionamentos,
-    { "default": "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png" },
+    { "default": "icons/estacionamento.png" },
     [25, 41],
     [12, 41],
     [1, -34],
@@ -242,6 +242,27 @@ function compartilharWhatsappMapa() {
     const url = `https://api.whatsapp.com/send?text=${encodeURIComponent('Acompanhe o Festival de Artes de São Cristóvão pelo nosso mapa interativo! Não perca nenhum evento!')} - ${encodeURIComponent(window.location.href)}`;
     window.open(url, '_blank');
 }
+
+// Função para obter categorias únicas dos eventos
+function getCategorias() {
+    const categorias = eventos.map(evento => evento.categoria);
+    return [...new Set(categorias)];
+}
+
+// Função para preencher o filtro de categorias
+function preencherFiltroCategorias() {
+    const categoriaFiltro = document.getElementById('categoriaFiltro');
+    const categorias = getCategorias();
+    categorias.forEach(categoria => {
+        const option = document.createElement('option');
+        option.value = categoria;
+        option.textContent = categoria;
+        categoriaFiltro.appendChild(option);
+    });
+}
+
+// Chame a função para preencher o filtro de categorias ao carregar a página
+document.addEventListener('DOMContentLoaded', preencherFiltroCategorias);
 
 // Adicione um evento de mudança para os filtros de data e hora
 L.DomUtil.get('dataFiltro').addEventListener('change', () => {
