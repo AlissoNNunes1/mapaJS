@@ -38,17 +38,26 @@ const ruasBloqueadasGroup = L.layerGroup();
 const postoAtendimentoGroup = L.layerGroup();
 
 // Function to add markers to the map
-function addMarkers(locations, coordinates, iconMapping, iconSize, iconAnchor, popupAnchor, layerGroup) {
+function addMarkers(locations, coordinates, iconMapping, defaultIconSize, defaultIconAnchor, defaultPopupAnchor, layerGroup) {
     coordinates.forEach((coord, index) => {
         const [lat, lng] = coord.split(',').map(Number);
 
         // Define o ícone com base no nome do local
         const iconUrl = iconMapping[locations[index]] || iconMapping['default'];
+        let iconSize = defaultIconSize;
+        let iconAnchor = defaultIconAnchor;
+
+        // Ajuste o tamanho do ícone se for pin.png
+        if (iconUrl.includes('pin.png')) {
+            iconSize = [90, 90]; // Tamanho maior para pin.png
+            iconAnchor = [45, 90]; // Ajuste a âncora do ícone
+        }
+
         const icon = L.icon({
             iconUrl: iconUrl,
             iconSize: iconSize,
             iconAnchor: iconAnchor,
-            popupAnchor: popupAnchor
+            popupAnchor: defaultPopupAnchor
         });
 
         const eventosNoLocal = eventos.filter(evento => evento.local === locations[index])
@@ -67,9 +76,10 @@ function addMarkers(locations, coordinates, iconMapping, iconSize, iconAnchor, p
         if (eventosNoLocal.length > 0) {
             popupContent += `<h5>Eventos:</h5>`;
             eventosNoLocal.forEach(evento => {
+                const happeningNow = isHappeningNow(evento);
                 popupContent += `
-                    <div class="evento">
-                        <h4>${evento.nome}</h4>
+                    <div class="evento ${happeningNow ? 'happening-now' : ''}">
+                        <h4>${evento.nome} ${happeningNow ? '<span class="agora">Agora</span>' : ''}</h4>
                         <p>Artista: ${evento.artista}</p>
                         <p>Data: ${evento.data}</p>
                         <p>Hora: ${evento.hora_inicio} - ${evento.hora_fim}</p>
@@ -93,10 +103,10 @@ function addMarkers(locations, coordinates, iconMapping, iconSize, iconAnchor, p
 
 // Mapeamento de ícones
 const iconMapping = {
-    "Palco Samba na Bica - Bica dos Pintos": "icons/5.png",
-    "Palco Frei Santa Cecilia - Praça do Carmo": "icons/5.png",
-    "Palco João Bebe Água - Praça São Francisco": "icons/5.png",
-    "Música na Igreja - Igreja do Rosário dos Homens Pretos": "icons/5.png",
+    "Palco Samba na Bica - Bica dos Pintos": "icons/pin.png",
+    "Palco Frei Santa Cecilia - Praça do Carmo": "icons/pin.png",
+    "Palco João Bebe Água - Praça São Francisco": "icons/pin.png",
+    "Música na Igreja - Igreja do Rosário dos Homens Pretos": "icons/pin.png",
     "Cine Trianon - Cine Theatro Lar Imaculada Conceição": "icons/2.png",
     "Salão de Artes Vesta Viana - Praça da Matriz": "icons/3.png",
     "Palco Mariano Antônio - Largo da Matriz": "icons/2.png",
@@ -104,10 +114,10 @@ const iconMapping = {
     "Cortejos Mestre Neca - Praça João Ferreira dos Reis": "icons/4.png",
     "Espaço Cidade Viva - EMEF Gina Franco": "icons/1.png",
     "Casa das Culturas Populares": "icons/4.png",
-    "Museu de Arte Sacra de Sergipe": "icons/6.png",
-    "Arquivo Público Municipal": "icons/6.png",
+    "Museu de Arte Sacra de Sergipe": "icons/pin2.png",
+    "Arquivo Público Municipal": "icons/pin2.png",
     "Salão de Literatura Manoel Ferreira - EMEF Gina Franco": "icons/1.png",
-    "Casa do IPHAN  - Praça São Francisco": "icons/6.png",
+    "Casa do IPHAN  - Praça São Francisco": "icons/pin2.png",
     "default": "icons/Perfil.png" // Ícone padrão para locais não mapeados
 };
 
@@ -116,9 +126,9 @@ addMarkers(
     locais_progamação,
     coordenadas_programação,
     iconMapping,
-    [70, 70],  // Tamanho do ícone
-    [25, 50],  // Âncora do ícone
-    [0, -50],  // Âncora do popup
+    [70, 70],  // Tamanho padrão do ícone
+    [25, 50],  // Âncora padrão do ícone
+    [0, -50],  // Âncora padrão do popup
     fascGroup
 );
 
@@ -127,7 +137,7 @@ addMarkers(
     ["Ruas Bloqueadas"],
     coordenadas_ruas_bloqueadas,
     { "Ruas Bloqueadas": "icons/bloqueio-de-estrada.png", "default": "icons/bloqueio-de-estrada.png" },
-    [26, 41],
+    [25, 41],
     [12, 41],
     [1, -34],
     ruasBloqueadasGroup
@@ -137,7 +147,7 @@ addMarkers(
 addMarkers(
     estacionamentos,
     coordenadas_estacionamentos,
-    { "default": "icons/estacionamento.png" },
+    { "default": "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png" },
     [25, 41],
     [12, 41],
     [1, -34],
@@ -217,7 +227,7 @@ function compartilharFacebook(evento) {
 
 // Função para compartilhar no Twitter
 function compartilharTwitter(evento) {
-    const url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(`Venha participar do evento "${evento.nome}" com ${evento.artista} no ${evento.local}! Não perca!`)}&url=${encodeURIComponent(window.location.href)}`;
+    const url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(`Venha participar do evento "${evento.nome}" com ${evento.artista} no ${evento.local}! Não perca!`)}&url=${encodeURIComponent(window.location)}`;
     window.open(url, '_blank');
 }
 
@@ -291,12 +301,13 @@ function mostrarEventos(categoria) {
         });
 
     eventosFiltrados.forEach(evento => {
+        const happeningNow = isHappeningNow(evento);
         const eventoDiv = L.DomUtil.create('div', 'evento', listaEventos);
-        if (isHappeningNow(evento)) {
+        if (happeningNow) {
             L.DomUtil.addClass(eventoDiv, 'happening-now');
         }
         eventoDiv.innerHTML = `
-            <h4>${evento.nome}</h4>
+            <h4>${evento.nome} ${happeningNow ? '<span class="agora">Agora</span>' : ''}</h4>
             <p>Artista: ${evento.artista}</p>
             <p>Local: ${evento.local}</p>
             <p>Data: ${evento.data}</p>
