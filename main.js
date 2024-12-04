@@ -204,9 +204,10 @@ const overlayMaps = {
 
 L.control.layers(null, overlayMaps).addTo(map);
 
+
 // Function to parse date and time
 function parseDateTime(date, time) {
-    const [day, month, year] = date.split('/');
+    const [year, month, day] = date.split('-'); // Ajuste para o formato YYYY-MM-DD
     const [hours, minutes] = time.split(':');
     return new Date(year, month - 1, day, hours, minutes);
 }
